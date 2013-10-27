@@ -8,3 +8,5 @@ pom.xml
 /.lein-*
 /.env
 *.log
+.nrepl*
+site.db.*
