@@ -5,20 +5,24 @@
 
 (defdb db schema/db-spec)
 
-(defentity users)
+(defentity todos)
 
-(defn create-user [user]
-  (insert users
-          (values user)))
+(defn create-todo [todo]
+  (insert todos
+          (values todo)))
 
-(defn update-user [id first-name last-name email]
-  (update users
-          (set-fields {:first_name first-name
-                       :last_name last-name
-                       :email email})
+(defn update-todo [id text done]
+  (update todos
+          (set-fields {:text text
+                       :done done
+                       :modified_ts (java.util.Date.)})
           (where {:id id})))
 
-(defn get-user [id]
-  (first (select users
+(defn get-todo [id]
+  (first (select todos
                  (where {:id id})
                  (limit 1))))
+
+(defn get-todos
+  []
+  (select todos))
