@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>Liberator Example</title>
+        <script type="text/javascript"
+            src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <script type="text/javascript">
+         function renderTodos(todos) {
+             $('#todo-list').empty();
+             for(todo in todos) {
+                 $('#todo-list').append($('<li/>', {html: todos[todo].text}));
+             }
+         }
+
+         function getTodos() {
+             $.get("/todos", renderTodos);
+         }
+
+         function handleError(xhr) {
+             $('#error').text(xhr.statusText + ": " + xhr.responseText);
+         }
+
+         function addTodo() {
+             $.post("/todos", {txt: $('#tobedone').val()}, renderTodos).fail(handleError);
+         }
+
+         $(function() {getTodos();});
+        </script>
+    </head>
+    <body>
+        <h1>Current Todos</h1>
+        <p id="error"></p>
+        <ul id="todo-list"></ul>
+        <input type="text" id="tobedone" placeholder="I want to ..." />
+        <button onclick="addTodo()">Add Todo</button>
+    </body>
+</html>

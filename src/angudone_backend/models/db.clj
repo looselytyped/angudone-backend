@@ -9,7 +9,9 @@
 
 (defn create-todo [todo]
   (insert todos
-          (values todo)))
+          (values {:text todo
+                   :created_ts (java.util.Date.)
+                   :modified_ts (java.util.Date.)})))
 
 (defn update-todo [id text done]
   (update todos
@@ -23,6 +25,6 @@
                  (where {:id id})
                  (limit 1))))
 
-(defn get-todos
+(defn get-all-todos
   []
   (select todos))
