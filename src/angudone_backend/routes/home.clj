@@ -39,12 +39,14 @@
   :exists? (fn [_] (when-let [todo (db/get-todo id)]
                      { ::todo todo }))
   :put! (fn [ctx]
-          (let [{{params :body-params method :request-method} :request} ctx
+          (let [{{params :body-params} :request} ctx
                 text (:txt params)
                 done (:done params)
                 updated (assoc (ctx ::todo) :text text :done done)]
             (db/update-todo updated)
             { ::todo updated}))
+  :delete! (fn [_] (db/delete-todo id))
+  :delete-enacted false
   :handle-ok (fn [ctx] (generate-string (ctx ::todo)))
   :respond-with-entity? false
   :available-media-types ["application/json"])
