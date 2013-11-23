@@ -7,23 +7,31 @@
 
 (defentity todos)
 
-(defn create-todo [todo]
+(defn create-todo
+  [todo]
   (insert todos
           (values {:text todo
                    :created_ts (java.util.Date.)
                    :modified_ts (java.util.Date.)})))
 
-(defn update-todo [id text done]
+(defn update-todo
+  [{:keys [id text done]}]
   (update todos
           (set-fields {:text text
                        :done done
                        :modified_ts (java.util.Date.)})
           (where {:id id})))
 
-(defn get-todo [id]
+(defn get-todo
+  [id]
   (first (select todos
                  (where {:id id})
                  (limit 1))))
+
+(defn delete-todo
+  [id]
+  (delete todos
+          (where {:id id})))
 
 (defn get-all-todos
   []
