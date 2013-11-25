@@ -10,8 +10,13 @@
     <script src="js/angular.js"></script>
     <script src="js/angular-route.js"></script>
     <script src="js/main.js"></script>
+    <script>
+     angular.module("myApp", []).run(function($http){
+         window.http = $http;
+     });
+    </script>
 </head>
-<body>
+<body ng-app="myApp">
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
