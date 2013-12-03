@@ -21,26 +21,26 @@
 (defresource todos-resource
   :allowed-methods [:post :get]
   :malformed? (fn [{{params :params method :request-method} :request}]
-                (and (= :put method) (empty? (:txt params))))
+                (and (= :put method) (empty? (:text params))))
   :handle-malformed "To do text cannot be empty!!"
   :handle-ok (fn [_] (generate-string (db/get-all-todos)))
   :handle-malformed "To do text cannot be empty!"
   :post! (fn [ctx]
            (let [params (get-in ctx [:request :params])]
-             (db/create-todo (:txt params))))
+             (db/create-todo (:text params))))
   :handle-created (fn [_] (generate-string (db/get-all-todos)))
   :available-media-types ["application/json"])
 
 (defresource todo-resource [id]
   :allowed-methods [:get :put :delete]
   :malformed? (fn [{{params :body-params method :request-method} :request}]
-                (and (= :put method) (empty? (:txt params))))
+                (and (= :put method) (empty? (:text params))))
   :handle-malformed "To do text cannot be empty!!"
   :exists? (fn [_] (when-let [todo (db/get-todo id)]
                      { ::todo todo }))
   :put! (fn [ctx]
           (let [{{params :body-params} :request} ctx
-                text (:txt params)
+                text (:text params)
                 done (:done params)
                 updated (assoc (ctx ::todo) :text text :done done)]
             (db/update-todo updated)
