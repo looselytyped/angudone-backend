@@ -1,5 +1,9 @@
 "use strict";
 
-function FirstCtrl($scope) {
-  $scope.name = "Angular!";
-}
+var app = angular.module("myApp", []);
+
+app.controller("FirstCtrl", ["$scope",
+  function(scope) {
+    scope.name = "Angular!";
+  }
+]);

@@ -77,3 +77,25 @@ Controllers
 - Use Dependency injection
 
 See the code to see how to define a simple controller called `FirstCtrl` and use the `$scope` to expose a model called `name` to the view.
+
+### Use the alternative syntax to define a controller
+
+Controllers are simple functions in Angular. Unfortunately this also means that they are in the global namespace of the host object. Furthermore functions in Angular leverage dependency injection with specific parameter names which can be a problem with magnification.
+
+Angular gives us an alternative way to define controllers that avoids these problems. In order to do this we first define a namespace for our application like so
+
+    var app = angular.module("myApp", []);
+
+Now we use this namespace in the view by telling `ng-app` the name we provided
+
+    <body ng-app="myApp">
+
+Now we can declare a controller using the alternative syntax. The syntax is like so
+
+    app.controller("FirstCtrl", ["$scope",
+      function(scope) {
+        scope.name = "Angular!";
+      }
+    ]);
+
+Here, the first argument to the `controller` method is the name of the controller, followed by an array. The **last** item in the array is the definition of the controller. The first to n-1 items in the array are `String`s that represent the dependencies that the function has. Because these are `String`s these will **not** be minified. Furthermore, now the `FirstCtrl` is tucked away in the `myApp` module namespace.
