@@ -112,3 +112,10 @@ See source code
 - We then use `ng-repeat` to loop over all the todos and create `list-items` that display the `text` of each todo
 
 See source code
+
+### Use `ng-change` on checkbox to mark todos as done
+
+- We introduce a checkbox with a `ng-model` (so that we can know it's state) for each todo within the `ng-repeat`
+- We use `ng-change` to invoke a function on the scope to mark the todo as done (that is set a `done` property on the todo to true)
+
+See source code

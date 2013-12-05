@@ -36,6 +36,9 @@
             <div class="lead" ng-controller="TodoCtrl">
               <ul>
                 <li ng-repeat="t in todos">
+                  <input type="checkbox"
+                    ng-model="isDone"
+                    ng-change="markDone(t, isDone)"/>
                   {{ t.text }}
                 </li>
               </ul>

@@ -9,5 +9,13 @@ app.controller("TodoCtrl", ["$scope",
       { text: "Teach it" },
       { text: "Profit" }
     ];
+
+    scope.markDone = function(t, c) {
+      if(c) {
+        t.done = true;
+      } else {
+        delete t.done;
+      }
+    }
   }
 ]);
