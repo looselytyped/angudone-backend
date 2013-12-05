@@ -20,3 +20,6 @@ To bootstrap Angular within your application you need to
 - Include the `angular.js` file in your `script` imports
 - Use the `ng-app` directive within your `body` tag like so `<body ng-app="myApp">`.
 - Note that this **does not** have to be on the `body` tag but could be inside a certain portion of your application.
+
+### What is a directive?
+A directive in Angular is essentially something that teaches your browser new tricks. For e.g `hg-app` tells your browser that this application is now an Angular applications. Other examples of directives are `ng-init` and the "evaluation" directive (which we use as `{{ }}`)
