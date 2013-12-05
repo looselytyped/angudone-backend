@@ -23,3 +23,15 @@ To bootstrap Angular within your application you need to
 
 ### What is a directive?
 A directive in Angular is essentially something that teaches your browser new tricks. For e.g `hg-app` tells your browser that this application is now an Angular applications. Other examples of directives are `ng-init` and the "evaluation" directive (which we use as `{{ }}`)
+
+### Use ng-init to initialize variables
+Let us take a look to see how we can use `ng-init` and the evaluation directive to introduce and interrogate new variables in scope.
+
+        <span ng-init="num = 30"></span>
+        <h4>The num is {{ num }}</h4>
+        <span ng-init="arr = 'angular is awesome'.split()"></span>
+        <h4>The array is {{ arr }}</h4>
+
+Note that we can write JavaScript specific code within an `ng-init`. There are some exceptions to this rule, for example you **cannot** do conditionals (like `if`).
+
+The evaluation directive can be used for String interpolation like we see in the example.
