@@ -10,14 +10,8 @@
     <script src="js/angular.js"></script>
     <script src="js/angular-route.js"></script>
     <script src="js/main.js"></script>
-    <script>
-      var myapp = angular.module("myApp", []);
-      myapp.run(function($rootScope) {
-        window.root = $rootScope;
-      });
-    </script>
 </head>
-<body ng-app="myApp">
+<body ng-app>
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -40,10 +34,17 @@
         <div class="starter-template">
             <h1>Angudone</h1>
             <div class="lead">
-              <span ng-init="num = 30"></span>
-              <h4>The num is {{ num }}</h4>
-              <span ng-init="arr = 'angular is awesome'.split()"></span>
-              <h4>The array is {{ arr }}</h4>
+              <input type="text" ng-model="textModel"/>
+              <h4>This is the text box value {{ textModel }}</h4>
+              <input type="checkbox" ng-model="checkboxModel"/>
+              <h4>This is the checkbox value {{ checkboxModel }}</h4>
+              <select ng-model="selectModel">
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="mercedes">Mercedes</option>
+                <option value="audi">Audi</option>
+              </select>
+              <h4>This is the checkbox value {{ selectModel }}</h4>
             </div>
         </div>
     </div>

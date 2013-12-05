@@ -58,3 +58,13 @@ To run this hack we will need to change our `hg-app` usage briefly to look like 
 Remember that this only works if you initialized variables **outside** of any controller.
 
 Needless to say global variables are generally a bad idea :)
+
+### Use ng-model
+
+- Provides a backing model for input/checkbox/select on the current scope
+- Automatic two way binding between view and model
+
+To use `ng-model` simply bind it to an input type of `text`, `checkbox` etc like so
+
+    <input type="text" ng-model="textModel"/>
+    <h4>This is the text box value {{ textModel }}</h4>
