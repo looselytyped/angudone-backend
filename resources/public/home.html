@@ -10,8 +10,14 @@
     <script src="js/angular.js"></script>
     <script src="js/angular-route.js"></script>
     <script src="js/main.js"></script>
+    <script>
+      var myapp = angular.module("myApp", []);
+      myapp.run(function($rootScope) {
+        window.root = $rootScope;
+      });
+    </script>
 </head>
-<body ng-app>
+<body ng-app="myApp">
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">

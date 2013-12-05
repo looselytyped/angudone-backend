@@ -35,3 +35,26 @@ Let us take a look to see how we can use `ng-init` and the evaluation directive 
 Note that we can write JavaScript specific code within an `ng-init`. There are some exceptions to this rule, for example you **cannot** do conditionals (like `if`).
 
 The evaluation directive can be used for String interpolation like we see in the example.
+
+### Understand the $rootScope
+Angular manages a global scope object called `$rootScope`. This is the grand-daddy of all scopes within an Angular application. If you were to `ng-init` a variable like `num` that we say in the earlier example it is put on the `$rootScope`. You can see what the `$rootScope` looks like by a simple hack (**NOTE:** Do not do this in your production code)
+
+	<script>
+	     var myapp = angular.module("myApp", []);
+	     myapp.run(function($rootScope) {
+	         window.root = $rootScope;
+	     });
+    </script>
+
+To run this hack we will need to change our `hg-app` usage briefly to look like `ng-app="myApp"`. Now if you were to go to the `Console` in Firebug or Chrome's Console in the Inspector and evaluate `root` you will see that it has `num` and `arr` on it. The following snippet is from FireBug's Console
+
+    >>> root
+    Scope { $id="002", $$watchers=[2], $root=Scope, more...}
+    >>> root.num
+    30
+    >>> root.arr
+    ["angular is awesome"]
+
+Remember that this only works if you initialized variables **outside** of any controller.
+
+Needless to say global variables are generally a bad idea :)
