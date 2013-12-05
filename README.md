@@ -68,3 +68,12 @@ To use `ng-model` simply bind it to an input type of `text`, `checkbox` etc like
 
     <input type="text" ng-model="textModel"/>
     <h4>This is the text box value {{ textModel }}</h4>
+
+### Our first Controller
+Controllers
+
+- Glue between the view and the model
+- Introduce scopes via `$scope`. These inherit prototypally from $rootScope
+- Use Dependency injection
+
+See the code to see how to define a simple controller called `FirstCtrl` and use the `$scope` to expose a model called `name` to the view.

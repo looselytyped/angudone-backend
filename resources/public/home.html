@@ -33,18 +33,9 @@
     <div class="container">
         <div class="starter-template">
             <h1>Angudone</h1>
-            <div class="lead">
-              <input type="text" ng-model="textModel"/>
-              <h4>This is the text box value {{ textModel }}</h4>
-              <input type="checkbox" ng-model="checkboxModel"/>
-              <h4>This is the checkbox value {{ checkboxModel }}</h4>
-              <select ng-model="selectModel">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="mercedes">Mercedes</option>
-                <option value="audi">Audi</option>
-              </select>
-              <h4>This is the checkbox value {{ selectModel }}</h4>
+            <div class="lead" ng-controller="FirstCtrl">
+              <input type="text" ng-model="name"/>
+              <h4>My name is {{ name }}</h4>
             </div>
         </div>
     </div>
