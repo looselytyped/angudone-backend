@@ -1,9 +1,9 @@
 "use strict";
 
-var app = angular.module("myApp", []);
+var app = angular.module("todosApp", []);
 
-app.controller("FirstCtrl", ["$scope",
+app.controller("TodoCtrl", ["$scope",
   function(scope) {
-    scope.name = "Angular!";
+    scope.name = "This is the Todo App!";
   }
 ]);

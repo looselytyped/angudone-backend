@@ -99,3 +99,9 @@ Now we can declare a controller using the alternative syntax. The syntax is like
     ]);
 
 Here, the first argument to the `controller` method is the name of the controller, followed by an array. The **last** item in the array is the definition of the controller. The first to n-1 items in the array are `String`s that represent the dependencies that the function has. Because these are `String`s these will **not** be minified. Furthermore, now the `FirstCtrl` is tucked away in the `myApp` module namespace.
+
+### Define the TodosCtrl
+
+We define our global namespace to be `todosApp` and then tuck away the `TodosCtrl` inside this namespace.
+
+See source code
