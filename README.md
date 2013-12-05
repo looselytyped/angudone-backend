@@ -105,3 +105,10 @@ Here, the first argument to the `controller` method is the name of the controlle
 We define our global namespace to be `todosApp` and then tuck away the `TodosCtrl` inside this namespace.
 
 See source code
+
+### Use `ng-repeat` to loop
+
+- We first put a few todos on the `$scope` of our `TodosCtrl`
+- We then use `ng-repeat` to loop over all the todos and create `list-items` that display the `text` of each todo
+
+See source code

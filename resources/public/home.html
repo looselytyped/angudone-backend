@@ -34,8 +34,11 @@
         <div class="starter-template">
             <h1>Angudone</h1>
             <div class="lead" ng-controller="TodoCtrl">
-              <input type="text" ng-model="name"/>
-              <h4>My name is {{ name }}</h4>
+              <ul>
+                <li ng-repeat="t in todos">
+                  {{ t.text }}
+                </li>
+              </ul>
             </div>
         </div>
     </div>
