@@ -1,19 +1,22 @@
-# angudone-backend
+# Angular Workshop
 
-FIXME
+## Instructions
+This is the final version of the Angular workshop that was held in Rich Web Experience 2013. All the solutions are in the `solutions` branch.
 
-## Prerequisites
+To get these changes
 
-You will need [Leiningen][1] 2.0 or above installed.
+- Make sure that you have no uncommitted changes in your version. If so you can either
+    - Undo all the changes via a `git reset --hard`
+    - If you prefer to keep your changes just make a commit via `git add .` followed by `git commit -m "My changed"`
+- Do a `git fetch` followed by a `git checkout solutions`
 
-[1]: https://github.com/technomancy/leiningen
+If you know your way around Git then you can `git-checkout` individual commits to see the changes in each. If you are not then go to the [commits](https://github.com/looselytyped/angudone-backend/commits/solutions) page and click on the "Browse Code" link next to each change to see what changed
 
-## Running
+## Exercises
 
-To start a web server for the application, run:
+### Angularize your application
+To bootstrap Angular within your application you need to
 
-    lein ring server
-
-## License
-
-Copyright © 2013 FIXME
+- Include the `angular.js` file in your `script` imports
+- Use the `ng-app` directive within your `body` tag like so `<body ng-app="myApp">`.
+- Note that this **does not** have to be on the `body` tag but could be inside a certain portion of your application.
