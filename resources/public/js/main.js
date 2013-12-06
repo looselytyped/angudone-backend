@@ -2,14 +2,16 @@
 
 var app = angular.module("todosApp", []);
 
-app.controller("TodoCtrl", ["$scope",
-  function(scope) {
-    var todos = [
-      { text: "Learn Angular" },
-      { text: "Teach it" },
-      { text: "Profit" }
-    ];
+app.factory("Todos", function() {
+  return [
+    { text: "Learn Angular" },
+    { text: "Teach it" },
+    { text: "Profit" }
+  ];
+})
 
+app.controller("TodoCtrl", ["$scope", "Todos",
+  function(scope, todos) {
     scope.todos = todos;
 
     scope.markDone = function(t, c) {

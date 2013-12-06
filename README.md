@@ -136,3 +136,10 @@ See source code
 - Use `todosApp.filter` to define a new filter. This filter will actually return the filter function that accepts the text to be transformed. It looks to see if the text ends with `#now` and if so replaces `#now` with todays date.
 
 See source code
+
+### Define a factory for Todos and use Dependency injection to inject it into the controller
+
+- Use 'todosApp.factory' to define a new factory called `Todos`. This takes a callback function as the second argument that returns the array of todos
+- Inject the todos in the controller by passing the `Todos` as the second argument to the controller definition
+
+See source code
