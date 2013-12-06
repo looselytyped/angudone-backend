@@ -39,7 +39,7 @@
                   <input type="checkbox"
                     ng-model="isDone"
                     ng-change="markDone(t, isDone)"/>
-                  {{ t.text }}
+                  {{ t.text | dated }}
                 </li>
               </ul>
               <form name="addTodo">

@@ -27,3 +27,13 @@ app.controller("TodoCtrl", ["$scope",
     }
   }
 ]);
+
+app.filter("dated", function() {
+  return function(text) {
+    if(text.endsWith("#now")) {
+      var index = text.indexOf("#");
+      return text.substring(0, index) + "(" + new Date() + ")";
+    }
+    return text;
+  }
+})

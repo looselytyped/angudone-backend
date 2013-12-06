@@ -130,3 +130,9 @@ See source code
 - We use `ng-disabled` along with `addTodo.$invalid` to disable the button if the form (whose name is `addTodo` is `$invalid`)
 
 See source code
+
+### Define a filter and use it within the view
+
+- Use `todosApp.filter` to define a new filter. This filter will actually return the filter function that accepts the text to be transformed. It looks to see if the text ends with `#now` and if so replaces `#now` with todays date.
+
+See source code
