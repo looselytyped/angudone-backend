@@ -1,10 +1,14 @@
 <div class="lead" ng-controller="TodoCtrl">
+  <h4 class="error">{{ msg }}</h4>
   <ul>
     <li ng-repeat="t in todos">
       <input type="checkbox"
              ng-model="isDone"
+             ng-checked="t.done"
              ng-change="markDone(t, isDone)"/>
       {{ t.text | dated }}
+      <a ng-href="#/todos/{{t.id}}">Edit</a>
+      <a href="" ng-click="deleteTodo(t)">Delete</a>
     </li>
   </ul>
   <form name="addTodo">

@@ -165,3 +165,91 @@ See source code
         });
 
 - Provide the ng-view directive in the `home.html` file and create HTML fragment files for each "view". This we put under the `views` directory
+
+### Use `$http` to make Ajax requests to get/edit/delete/post
+
+__NOTE that this is not the IDIOMATIC way to do Ajax in Angular__. Our reason for doing it this way is to understand how things work under the hood. If you are to do AJAX using Angular look into [$resource](http://docs.angularjs.org/api/ngResource.$resource)
+
+This is a big change.
+
+- We remove the `Todos` factory we defined earlier
+- Our `TodosCtrl` now has the `$http` service being injected into it.
+- We define a new method inside the `TodosCtrl` that gives us an easy way to refresh the todos on the `$scope`
+
+        var refreshTodos = function() {
+          http
+            .get("/todos")
+            .success(function(data) {
+              scope.todos = data;
+            })
+            .error(function(data) {
+              scope.msg = data;
+            });
+        };
+
+        refreshTodos();
+
+- Note that we invoke `refreshTodos` so that when the controller loads the method is invoked and `$scope` now has the list of todos. `refreshTodos` internally uses the `$http` service to make a `GET` request to `/todos/`. This has a `success` callback that is invoked when Angular makes the request. We simply grab the data that comes back and and put it on the `$scope`. If the call fails the `error` callback simply puts the error data on the `scope` (which we can look up in the view using `{{ msg }}`)
+- We have to change `markDone` to `PUT` the todo to the server so we can store the fact that it was marked done
+
+        scope.markDone = function(t, c) {
+          if(c) {
+            t.done = true;
+          } else {
+            delete t.done;
+          }
+          http
+            .put("/todos/"+t.id, JSON.stringify(t))
+            .success(function(data) {
+              refreshTodos();
+            })
+            .error(function(data) {
+              scope.msg = "An error occurred " + data;
+            });
+        };
+
+- We use the `JSON.stringify` to JSON-infy our updated todo and `PUT` it to the server. On a success we merely invoke `refreshTodos` so that the `$scope` now has the updated list of todos from the server.
+- Similarly we update `newTodo` to do a `POST` to the server with the new todo.
+
+        scope.newTodo = function(todoTxt) {
+          http
+            .post("/todos", JSON.stringify({text: todoTxt}))
+            .success(function() {
+              refreshTodos();
+            })
+            .error(function(data) {
+              scope.msg = "An error occurred " + data;
+            });
+        };
+
+- We add a "Delete" link on `todos.html` like so
+
+        <a href="" ng-click="deleteTodo(t)">Delete</a>
+
+- Note that it merely invokes the `deleteTodo` method (which does not exist yet!) on the scope. Now we need to add that method to the `$scope` of the `TodosCtrl`
+
+        scope.deleteTodo = function(todo) {
+          http
+            .delete("/todos/"+todo.id)
+            .success(function() {
+              refreshTodos();
+            })
+            .error(function(data) {
+              scope.msg = "An error occurred " + data;
+            });
+        }
+
+- If you have followed the discussion so far there is nothing new here. Simply `DELETE` the todo with a specific `id`. If all goes well simply invoke `refreshTodos` so that `$scope` is updated with the new list of `todos`.
+- To edit Todos we need to do a bit more
+- We are going to edit Todos on a new view so we need to first define a new route
+
+        .when("/todos/:id", {
+          templateUrl: "views/editTodos.html"
+        })
+
+- Notice that we have a parameterized URL with `:id` as a placeholder. We can use the `$routeParams` service to get to the id.
+- We need to create the  `editTodos.html`
+- We need to provide a controller for the `editTodos.html` file which we will call `EditCtrl`
+- The only new thing here is the use of the `$routeParams` and `$location` services
+- The `$routeParams` lets us get to the `:id` in the URL - for example if the URL is `/todos/2` then `$routeParams.id` will be 2.
+- The other new thing here is `$location` which lets us set the `location` of the URL. We use this to send the user back to `/todos` if the update succeeds.

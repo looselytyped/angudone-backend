@@ -1,1 +1,15 @@
-This is where the Edit Todo code goes
+<div class="lead" ng-controller="EditCtrl">
+  <h4 class="error">{{ msg }}</h4>
+  <form name="editTodo">
+    <input
+      type="text"
+      ng-model="todo.text"
+      required
+      placeholder="I want to ... "/>
+    <button
+      ng-disabled="editTodo.$invalid"
+      ng-click="edit(todo)"
+      >Edit
+    </button>
+  </form>
+</div>
