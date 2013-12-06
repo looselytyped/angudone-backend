@@ -42,6 +42,17 @@
                   {{ t.text }}
                 </li>
               </ul>
+              <form name="addTodo">
+                <input
+                  type="text"
+                  ng-model="todoTxt"
+                  required
+                  placeholder = "I want to ... "/>
+                <button
+                  ng-disabled="addTodo.$invalid"
+                  ng-click="newTodo(todoTxt)"
+                  >Add</button>
+              </form>
             </div>
         </div>
     </div>

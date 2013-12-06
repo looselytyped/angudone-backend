@@ -4,11 +4,13 @@ var app = angular.module("todosApp", []);
 
 app.controller("TodoCtrl", ["$scope",
   function(scope) {
-    scope.todos = [
+    var todos = [
       { text: "Learn Angular" },
       { text: "Teach it" },
       { text: "Profit" }
     ];
+
+    scope.todos = todos;
 
     scope.markDone = function(t, c) {
       if(c) {
@@ -16,6 +18,12 @@ app.controller("TodoCtrl", ["$scope",
       } else {
         delete t.done;
       }
+    };
+
+    scope.newTodo = function(todoTxt) {
+      todos.push({
+        text: todoTxt
+      });
     }
   }
 ]);

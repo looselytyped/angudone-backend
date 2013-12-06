@@ -119,3 +119,14 @@ See source code
 - We use `ng-change` to invoke a function on the scope to mark the todo as done (that is set a `done` property on the todo to true)
 
 See source code
+
+### Use a form to add new todos to the list with validation
+
+- Use a regular HTML `form` to post the text of a new todo
+- Name the form so that we can get to it later (via `form name="addTodo"`)
+- Use the `novalidate` HTML5 attribute to ensure that modern browsers do not attempt to do any validation
+- Use the HTML5 `required` attribute on the `input` type
+- We use `ng-click` on the button to invoke a method on the scope object to add a new todo
+- We use `ng-disabled` along with `addTodo.$invalid` to disable the button if the form (whose name is `addTodo` is `$invalid`)
+
+See source code
