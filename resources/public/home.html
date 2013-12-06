@@ -33,27 +33,7 @@
     <div class="container">
         <div class="starter-template">
             <h1>Angudone</h1>
-            <div class="lead" ng-controller="TodoCtrl">
-              <ul>
-                <li ng-repeat="t in todos">
-                  <input type="checkbox"
-                    ng-model="isDone"
-                    ng-change="markDone(t, isDone)"/>
-                  {{ t.text | dated }}
-                </li>
-              </ul>
-              <form name="addTodo">
-                <input
-                  type="text"
-                  ng-model="todoTxt"
-                  required
-                  placeholder = "I want to ... "/>
-                <button
-                  ng-disabled="addTodo.$invalid"
-                  ng-click="newTodo(todoTxt)"
-                  >Add</button>
-              </form>
-            </div>
+            <ng-view></ng-view>
         </div>
     </div>
 

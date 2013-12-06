@@ -1,6 +1,6 @@
 "use strict";
 
-var app = angular.module("todosApp", []);
+var app = angular.module("todosApp", ['ngRoute']);
 
 app.factory("Todos", function() {
   return [
@@ -9,6 +9,16 @@ app.factory("Todos", function() {
     { text: "Profit" }
   ];
 })
+
+app.config(function($routeProvider) {
+  $routeProvider
+    .when("/todos", {
+      templateUrl: "views/todos.html"
+    })
+    .otherwise({
+      redirectTo: "/todos"
+    })
+});
 
 app.controller("TodoCtrl", ["$scope", "Todos",
   function(scope, todos) {

@@ -141,5 +141,27 @@ See source code
 
 - Use 'todosApp.factory' to define a new factory called `Todos`. This takes a callback function as the second argument that returns the array of todos
 - Inject the todos in the controller by passing the `Todos` as the second argument to the controller definition
+- Keep in mind that factories and services are _singletons_, in that the factory function will only be called __once__! Every controller that gets the Todos injected into them will see the same copy of the todos array as everybody else
 
 See source code
+
+### Define routes for the application
+
+- Include angular-route.js js file in your list of script dependencies in the HTML
+- Make 'ngRoute' dependency on your application module like so
+
+        <script src="js/angular-route.js"></script>
+
+- Configure the application routes with `app.config`
+
+        app.config(function($routeProvider) {
+          $routeProvider
+            .when("/todos", {
+              templateUrl: "views/todos.html"
+            })
+            .otherwise({
+              redirectTo: "/todos"
+            })
+        });
+
+- Provide the ng-view directive in the `home.html` file and create HTML fragment files for each "view". This we put under the `views` directory
